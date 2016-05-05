@@ -1,0 +1,181 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="BalloonShop.master.cs"
+  Inherits="BalloonShop" %>
+<%@ Register Src="UserControls/CartSummary.ascx" TagName="CartSummary" TagPrefix="uc6" %>
+<%@ Register Src="UserControls/UserInfo.ascx" TagName="UserInfo" TagPrefix="uc5" %>
+<%@ Register Src="UserControls/SearchBox.ascx" TagName="SearchBox" TagPrefix="uc4" %>
+<%@ Register Src="UserControls/CategoriesList.ascx" TagName="CategoriesList" TagPrefix="uc3" %>
+<%@ Register Src="UserControls/DepartmentsList.ascx" TagName="DepartmentsList" TagPrefix="uc2" %>
+<%@ Register Src="UserControls/Header.ascx" TagName="Header" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+  <title>Toy Car</title>
+      <asp:ContentPlaceHolder id="headPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="Css/compiled.css?v=201404281344" />
+</head>
+<body>
+ <div class="wrap">
+    <div style="margin-left: auto; margin-right: auto; text-align: center;">
+  <form id="Form1" runat="server">
+
+      <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/logo4.png" Height="180px" Width="1100px" />
+      <br />
+      <asp:Label ID="Label1" runat="server" BackColor="Silver" Height="30px" style="margin-left: 0px" Width="1100px">
+      <asp:HyperLink ID="Home" runat="server" BackColor="#0000CC" BorderColor="#FFFFCC" BorderStyle="Ridge" Font-Bold="True" ForeColor="White" Height="28px" NavigateUrl="~/Default.aspx" Width="150px">Home</asp:HyperLink>
+      <asp:HyperLink ID="Catalog" runat="server" BackColor="#0000CC" BorderColor="#FFFFCC" BorderStyle="Ridge" Font-Bold="True" ForeColor="White" Height="28px" NavigateUrl="~/Catalog.aspx" Width="150px">Product Catalog</asp:HyperLink>
+      <asp:HyperLink ID="OurTeam" runat="server" BackColor="#0000CC" BorderColor="#FFFFCC" BorderStyle="Ridge" Font-Bold="True" ForeColor="White" Height="28px" Width="150px" NavigateUrl="~/OurTeam.aspx">Our Team</asp:HyperLink>
+      <asp:HyperLink ID="Contact" runat="server" BackColor="#0000CC" BorderColor="#FFFFCC" BorderStyle="Ridge" Font-Bold="True" ForeColor="White" Height="28px" Width="150px" NavigateUrl="~/Contact.aspx">Contacts</asp:HyperLink>
+      <asp:HyperLink ID="Community" runat="server" BackColor="#0000CC" BorderColor="#FFFFCC" BorderStyle="Ridge" Font-Bold="True" ForeColor="White" Height="28px" Width="150px" NavigateUrl="~/Community.aspx">Community</asp:HyperLink>
+      <asp:HyperLink ID="HyperLink3" runat="server" BackColor="#0000CC" BorderColor="#FFFFCC" BorderStyle="Ridge" Font-Bold="True" ForeColor="#0000CC" Height="28px" Width="159px">-</asp:HyperLink>
+      <asp:HyperLink ID="HyperLink8" runat="server" BackColor="#0000CC" BorderColor="#FFFFCC" BorderStyle="Ridge" Font-Bold="True" ForeColor="#0000CC" Height="28px" Width="139px">-</asp:HyperLink>
+      </asp:Label>
+
+
+      
+
+    <table cellspacing="0" cellpadding="0" width="770" border="0">
+      <tr>
+        <td width="220" valign="top">
+
+            <!---Login View--->
+            <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
+                <!------------------ Before login ------------------> 
+            <asp:View ID="loginView" runat="server">
+            <ul>
+                 <li class="login">
+                                        <a href="/Account/Login.aspx" class="icon">
+                                            <span aria-hidden="true" class="icon-person"></span>                            
+                                            <span class="text">Login</span>
+                                            <a href="/Account/Register.aspx">Create an account &raquo;</a>
+                                        </a>
+                                </li>
+                            </ul>
+
+                        </asp:View>
+
+                <!------------------ After login ------------------> 
+             <asp:View ID="logoutView" runat="server">
+                        
+                           <ul>
+                                <li class="login">
+                                            <span aria-hidden="true" class="icon-person"></span>                            
+                                            <span class="text">Welcome! 
+                                                <asp:Label ID="userName" runat="server"></asp:Label></span>
+                                            <a id="logout" href="#" runat="server" onServerClick="btnLogout_Click">Logout</a>
+                                            <a href="/Account/Register.aspx">Modify an account &raquo;</a>
+                                </li>
+                            </ul>
+                          
+                        </asp:View>
+                    
+                    </asp:MultiView>
+          <!---Product List-->
+          <br />
+          <uc2:DepartmentsList ID="DepartmentsList1" runat="server" />
+          <br />
+          <uc3:CategoriesList ID="CategoriesList1" runat="server" />
+          <uc4:SearchBox id="SearchBox1" runat="server" Visible="False">
+          </uc4:SearchBox>
+          <br />
+          <uc6:CartSummary ID="CartSummary1" runat="server" />
+        </td>
+        <td valign="top">
+          <asp:ContentPlaceHolder ID="contentPlaceHolder" runat="server">
+          </asp:ContentPlaceHolder>
+        </td>
+      </tr>
+    </table>
+
+        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+     <footer>
+
+ <div>
+         <asp:Label ID="partners" runat="server" Text="Our Partners:" ForeColor="#CC3300" Width="1000px" style="text-align: left"></asp:Label>
+</div>
+            &nbsp;<ul class="third">
+                <li>
+                    <a href="http://www.centennialcollege.ca/" target="_blank">
+                        <img src="/images/Centennial.jpg" alt="Centennial College" height="60px" width="110px" >
+
+                    </a>
+
+                </li>
+                <a class="icon" href="https://livechat.boldchat.com/aid/422135137631992176/bc.chat?resize=true&amp;cwdid=418381770886242287&amp;wdid=737062655151682738&amp;vr=&amp;vn=&amp;vi=&amp;ve=&amp;vp=&amp;iq=&amp;curl=" target="_blank" onclick="window.open((window.pageViewer &amp;&amp; pageViewer.link || function(link){return link;})(this.href + (this.href.indexOf('?')>=0 ? '&amp;' : '?') + 'url=' + escape(document.location.href)), 'Chat367233609785093432', 'toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=1,width=640,height=480');return false;">
+   
+    <noscript>Live Chat</noscript >
+</a>
+            </ul>
+             <ul class="fourth">
+                <li>
+                    <a href="https://sealserver.trustkeeper.net/compliance/cert.php?code=x4irdzlmFVRIpWYHKIMpiFWOpDGWgo" target="_blank">
+                        <img src="https://sealserver.trustkeeper.net/compliance/seal.php?code=x4irdzlmFVRIpWYHKIMpiFWOpDGWgo" alt="Trustwave Trusted Commerce" >
+                    </a>
+                </li>
+            </ul>
+        </div>
+         
+    </footer>
+ </div>
+  
+  </form>
+
+   <div style="margin-left: auto; margin-right: auto; text-align: center;">
+    <noscript>
+    <a href="http://www.boldchat.com" title="Live Chat Software" target="_blank"><img alt="Live Chat Software" src="https://vms.boldchat.com/aid/422135137631992176/bc.vmi?&amp;wdid=737062655151682738&amp;vr=&amp;vn=&amp;vi=&amp;ve=&amp;vp=&amp;iq=&amp;curl=" border="0" width="1" height="1" /></a>
+    </noscript>
+         
+
+  
+   
+<a id="popupLauncher" href="#subscribePopup" style="display:none;"></a>
+
+<div id="subscribePopup" style="display:none;">
+	
+    <div id="popup-header">
+        
+        <div id="popup-message">
+            <h2 style="color:#111" class="subscribe-message">GET YOUR CAR!</h2>
+            
+                <h2>Subscribe To Our Newsletter</h2>
+                <p style="color: #d32c3a;">
+                    <span class="subscribe-message">Our free Bargain Bulletin Newsletter is distributed regularly.</span><br />
+                    Sign up now to receive notice of promotions and other exciting Toy Car Store news and a chance to win a <strong>$30 Toy Car Store</strong> gift card.
+                </p>
+            
+        </div>
+    </div>
+    <div id="popup-form">
+        
+
+            <div class="clearfix">
+                <div id="form-left">
+                    <label for="">Email Address</label>
+                    <input type="email" id="Email_1" name="Email" placeholder="Email Address" maxlength="100" required="yes" />
+
+                    <input type="hidden" name="SubAction" value="sub_add_update" />
+                </div>
+            </div>
+                        
+            <div class="clearfix">
+                <input type="checkbox" id="checkbox-1-1" class="regular-checkbox" /><label for="checkbox-1-1"></label>
+                <div class="tag">I agree to the terms below*</div>
+                <br />
+            </div>
+            
+            <button type="submit" class="button button_small">Subscribe</button>
+
+            <label>
+                <p>
+                <br />
+                    *I would like to receive marketing messages from Toy Car Store that may include email, direct mail, or individual communications. <br />
+                    I consent that Toy Car Store, processes and transfers my data and will never share or sell my data.<br />
+                    I understand that I can unsubscribe at any time. <a href="/Help/PrivacyAndSecurity">Read our Privacy Policy</a>.
+                </p>                
+            </label>
+         </div>
+        </div>
+        </div>
+</div>
+</body>
+</html>
